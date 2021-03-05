@@ -1,0 +1,2 @@
+# miniapp-addressing
+MiniApp Addressing
