@@ -81,7 +81,7 @@
         This is still a work in progress. The proposal is being incubated in the <a href="https://www.w3.org/community/miniapps/">W3C MiniApps Ecosystem Community Group</a>.
         </p>
         <p its-locale-filter-list="zh-hans" lang="zh-hans">
-            本文档由 <a href="https://www.w3.org/community/miniapps/">W3C MiniApps生态社区组</a>孵化，目前尚在编辑草稿阶段。</p>
+            本文档由 <a href="https://www.w3.org/community/miniapps/">W3C MiniApps 生态社区组</a>孵化，目前尚在编辑草稿阶段。</p>
         <p id="langSwitch">
           <button onclick="switchLang('zh-hans')" lang="zh-hans">简体中文</button>
           <button onclick="switchLang('en')" lang="en">English</button>
@@ -215,6 +215,7 @@
           <ol>
             <li>platform://miniapp/foo</li>
             <li>platform://miniapp/foo/pages/index</li>
+            <li>platform://miniapp/foo/widgets/index</li>
             <li>platform://miniapp/foo?category=img</li>
             <li>platform://miniapp/foo;version=1.0.1@example.com/pages/index?category=book#section-3</li>
             <li>platform://miniapp/foo;version=1.0.1-trial@example.com:8080/pages/index?category=book#section-3</li>
@@ -223,6 +224,7 @@
           <ol>
             <li>https://platform.org/miniapp/foo</li>
             <li>https://platform.org/miniapp/foo/pages/index</li>
+            <li>https://platform.org/miniapp/foo/widgets/index</li>
             <li>https://platform.org/miniapp/foo?category=img</li>
             <li>https://platform.org/miniapp/foo;version=1.0.1/pages/index?k=v#bar</li>
             <li>https://platform.org/miniapp/foo;version=1.0.1-trial/pages/index?k=v#bar</li>
@@ -386,7 +388,7 @@
             <ol start=6>
             <li>
               <p its-locale-filter-list="en" lang="en">The user agent obtains the mini app package based on the parsed provider information and the identification information of the mini app (e.g., id, version). The user agent handles different situations of the provider:</p>
-              <p its-locale-filter-list="zh-hans" lang="zh-hans">user agent 根据解析到的 provider 的信息及小程序的标识信息（比如id、version）获取小程序的包。User agent 需要处理provider不同的情况：</p>
+              <p its-locale-filter-list="zh-hans" lang="zh-hans">user agent 根据解析到的 provider 的信息及小程序的标识信息（比如 id、version）获取小程序的包。User agent 需要处理 provider 不同的情况：</p>
             </li>
             </ol>
 
@@ -464,14 +466,14 @@
                 <p its-locale-filter-list="en" lang="en">
                   If the received request is not an HTTPS request, an HTTP 403 forbidden response is returned, and the request is terminated.
                 </p>
-                <p its-locale-filter-list="zh-hans" lang="zh-hans">如果接受到请求不是 HTTPS 请求，则返回 HTTP 403禁止响应，并终止此请求。</p>
+                <p its-locale-filter-list="zh-hans" lang="zh-hans">如果接受到请求不是 HTTPS 请求，则返回 HTTP 403 禁止响应，并终止此请求。</p>
 
               </li>
               <li>
                 <p its-locale-filter-list="en" lang="en">
                   If the received request fails to pass authentication, an HTTP 403 forbidden response is returned, and the request is terminated.
                 </p>
-                <p its-locale-filter-list="zh-hans" lang="zh-hans">如果接受到的请求未通过鉴权，则返回 HTTP 403禁止响应，并终止此请求。</p>
+                <p its-locale-filter-list="zh-hans" lang="zh-hans">如果接受到的请求未通过鉴权，则返回 HTTP 403 禁止响应，并终止此请求。</p>
               </li>
               <li>
                 <p its-locale-filter-list="en" lang="en">
@@ -545,19 +547,19 @@
                         </li>
                       <li>
                         <p its-locale-filter-list="en" lang="en">It is recommended that UA or sign signature are used to authenticate the request process on the package server side.</p>
-                        <p its-locale-filter-list="zh-hans" lang="zh-hans">请求过程建议通过UA或者sign签名的方式，进行package server端的鉴权认证。</p>
+                        <p its-locale-filter-list="zh-hans" lang="zh-hans">请求过程建议通过 UA 或者 sign 签名的方式，进行 package server 端的鉴权认证。</p>
                       </li>
                       <li>
                         <p its-locale-filter-list="en" lang="en">During the request process, it is recommended to check replay attacks using HMAC.</p>
-                      <p its-locale-filter-list="zh-hans" lang="zh-hans">请求过程中，建议通过HMAC的方式进行防重放攻击检查。</p>
+                      <p its-locale-filter-list="zh-hans" lang="zh-hans">请求过程中，建议通过 HMAC 的方式进行防重放攻击检查。</p>
                       </li>
                       <li>
                         <p its-locale-filter-list="en" lang="en">During the request process, it is recommended to verify package integrity by abstract comparison of md5 or sha1.</p>
-                      <p its-locale-filter-list="zh-hans" lang="zh-hans">请求过程中，建议通过md5或sha1的摘要比对方式，验证包完整性。</p>
+                      <p its-locale-filter-list="zh-hans" lang="zh-hans">请求过程中，建议通过 md5 或 sha1 的摘要比对方式，验证包完整性。</p>
                       </li>
                       <li>
                         <p its-locale-filter-list="en" lang="en">While parsing the Response by the user agent, it is recommended to protect the data package security through encryption and decryption.</p>
-                      <p its-locale-filter-list="zh-hans" lang="zh-hans">user agent 解析Response过程中，建议通过加解密方式进行数据包的安全性保护。</p>
+                      <p its-locale-filter-list="zh-hans" lang="zh-hans">user agent 解析 Response 过程中，建议通过加解密方式进行数据包的安全性保护。</p>
 
                       </li>
                       <li>
