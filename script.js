@@ -39,6 +39,7 @@ void function() {
           'Latest published version:': '最新发布草稿：',
           'Latest editor\'s draft:': '最新编辑草稿：',
           'Editors:': '编辑：',
+          'Former editor:': '原编辑：',
           'Former editors:': '原编辑：',
           'Participate:': '协助参与：',
           'Feedback:': '反馈：',
