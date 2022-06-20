@@ -1,6 +1,6 @@
 # MiniApp URI Scheme explainer
 
-> Note: This document serves as a supplementary explanation of the [MiniApp URI Scheme](https://w3c.github.io/miniapp/specs/uri/) spec. If there is any inconsistency with the spec, you should consider the spec to be authoritative.
+> Note: This document serves as a supplementary explanation of the [MiniApp Addressing](https://w3c.github.io/miniapp-addressing/) draft note. If there is any inconsistency with the note, you should consider the note to be authoritative.
 
 ## Authors
 
@@ -10,9 +10,9 @@ Dan Zhou, Shuo Wang, Qian Liu, Tengyuan Zhang
 
 ### What is this?
 
-MiniApp URI Scheme defines the Uniform Resource Identifier of a MiniApp ([What is MiniApp?](https://w3c.github.io/miniapp/white-paper/#what-is-miniapp)).
+MiniApp Addressing defines how MiniApps ([What is MiniApp?](https://w3c.github.io/miniapp/white-paper/#what-is-miniapp)) are located.
 
-Applications including Web applications can use MiniApp URI Scheme to claim the MiniApp resource it's trying to reference.
+Applications including Web applications can use MiniApp Addressing to claim the MiniApp resource it's trying to reference.
 
 ### Why should we care?
 
@@ -38,7 +38,7 @@ For example:
 
 ## 2. Goals
 
-The MiniApp URI Scheme specification aims to provide a set of conform syntax rules to concatenate the information of a miniapp, such as id, version, package address, so that the user agents can identify, parse, and obtain the miniapp resource on any platform.
+The MiniApp Addressing aims to provide a set of conform syntax rules to concatenate the information of a miniapp, such as id, version, package address, so that the user agents can identify, parse, and obtain the miniapp resource on any platform.
 
 The miniapp URI achieve this goal by the following design:
 
@@ -46,6 +46,21 @@ The miniapp URI achieve this goal by the following design:
 * Identify the resource inside miniapp package by its path, query and fragment components. The definition of these three components is close to a HTTP url in browser. How those components can be used relies on other miniapp specs, especially, the [MiniApp Packaging specification](https://w3c.github.io/miniapp/specs/packaging/).
 
 ### Key Considerations
+
+#### why is custom-scheme necessary?
+Currently, most of MiniApp user agents use deep-link technology to open a MiniApp.
+
+Deep-link technology contains 2 ways, custom scheme, and HTTP.
+
+For Android, they are called deep-link and app-link respectively.
+For iOS, there is universal link and custom URL scheme.
+
+MiniApp also needs to support both, custom-scheme(like Android deeplink and iOS custom url scheme) and HTTP scheme (like Android applink and iOS universal link).
+
+We prefer user agents to implement HTTP schemes, but custom-scheme is also necessary to appear in this note.
+
+What's more, custom-scheme is more compatible with different operating systems. It can run on more systems and devices, and it is also compatible with the existing implementations mechanism(We want the MiniApp vendor to implement this note faster and more securely).
+
 
 #### Why is host and port needed?
 
@@ -59,7 +74,7 @@ Only id uniqueness in host is required. May use some algorithm to generate a uni
 
 #### Why is version components needed?
 
-When a user visits a web page, the page content is always up to date. This is the same for miniapp in most cases, so the version  in miniapp URI usually is null. But in some cases, a user agent or user needs to access some specific versions of miniapp. So we reserve the version component.
+When a user visits a web page, the page content is always up to date. This is the same for miniapp in most cases, so the version in miniapp URI usually is null. But in some cases, a user agent or user needs to access some specific versions of miniapp. So we reserve the version component.
 
 ## 3. Non-goals
 
@@ -83,23 +98,25 @@ Example code:
 ```html
 <!doctype html>
 <html>
-<a href="miniapp://foo;version=1.0.1-trial@example.com:8080/pages/index?category=book#section-3">open a MiniApp</a>
+<a href="platform://foo;version=1.0.1-trial@example.com:8080/pages/index?category=book#section-3">open a MiniApp</a>
 </html>
 ```
 
+`platform` is a miniapp platform identifier to uniquely identify a user agent on a mobile device, which can be other string, usually registered in the operating system (say mobile deep linking technology)
+
 Browsers may handle the click action of Link A inconsistently for this Web page.
 
-* If it is running in a web page or MiniApp page or Native App that has a miniapp runtime, the URI can be parsed properly, and it will be retrieved  the resource from the *example.com*, then locate the URI path, query, fragment and other information to dereference the corresponding resource.
-* If it is in a web page of or Native App that does not have a miniapp runtime, the platform can parse the URI properly but can not run the miniapp resource. To provide a smooth user experience, it may trigger other user agent to open the miniapp.
+* If it is running in a web page or MiniApp page or Native App that has a miniapp runtime, and the user agent recognize its scheme and enable download the miniapp package, the URI can be parsed properly, and it will be retrieved  the resource from the *example.com*, then locate the URI path, query, fragment and other information to dereference the corresponding resource.
+* If it is in a web page of or Native App that does not have a miniapp runtime or does not have privilege to download the miniapp package, the platform can parse the URI properly but can not run the miniapp resource. To provide a smooth user experience, it may trigger other user agent to open the miniapp.
 
 ### Scenario 2 Use MiniApp URI within a miniapp
 
 Similar to parsing the URLs of each parts of the context for a web page, in MiniApp's runtime context, developers also need to know all the necessary information of the URI corresponding to the current MiniApp page. These information may include,
 
 ```javascript
-console.log(location.href);     // miniapp://foo;version=1.0.1-trial@example.com:8080/pages/index?k=v#bar
-console.log(location.protocol); // miniapp:
-console.log(location.origin);   // miniapp://foo;version=1.0.1-trial@example.com:8080
+console.log(location.href);     // platform://foo;version=1.0.1-trial@example.com:8080/pages/index?k=v#bar
+console.log(location.protocol); // platform:
+console.log(location.origin);   // platform://foo;version=1.0.1-trial@example.com:8080
 console.log(location.id);       // foo
 console.log(location.version);  // 1.0.1-trial
 console.log(location.host);     // example.com
@@ -126,11 +143,7 @@ More use case of MiniApp can be found in the [MiniApp White Paper use case](http
 
 ## 6. Detailed design discussions
 
-The proposal of the URI scheme is still in an early stage. The main form of discussion are meetings and offline communication. All of the discussion has been recorded in [the Q&A document](./Q&A.md)
-
-## 7. the flowchart of MiniApp URI and comparison of other solution
-![MiniApp URI flowchart](https://user-images.githubusercontent.com/12129112/83343149-2d774800-a329-11ea-9cfd-5a2b0fd7d626.jpg)
-For more discussions, refer to https://github.com/w3c/miniapp/issues/34 https://github.com/w3ctag/design-reviews/issues/478
+The main form of discussion are meetings and offline communication. All of the discussion has been recorded in [the Q&A document](./Q&A.md)
 
 ## References & acknowledgements
 
@@ -141,9 +154,9 @@ The following name list will be continuously updated, in the order of alphabetic
 * Hax
 * Langyu Liu
 * Jing Huang
+* Ming Zu
 * Wei Sun
 * Xiaohong Deng
 * Xiaoqian Wu
 * Yuan Lu
-* Ming Zu
 * ...

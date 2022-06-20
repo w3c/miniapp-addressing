@@ -1,6 +1,6 @@
 # Questions & Answers
 
-> Note: This document documents Q&A during all discussions about [MiniApp URI Scheme](https://w3c.github.io/miniapp/specs/uri/) spec.
+> Note: This document documents Q&A during all discussions about [MiniApp Addressing](https://w3c.github.io/miniapp-addressing/) note.
 
 ## About syntax-host
 
@@ -56,7 +56,7 @@ The MiniApp URI 'miniapp://foo' which has only appId  is similar to the known UR
 
 ## About security
 
-### 1. Does MiniApp URI has security risks? (by @hax)**
+### 1. Does MiniApp URI has security risks? (by @hax)
 
 **Answer:** The MiniApp URI Scheme may exposes the package address in some situation, which makes someone think that there may be security risk.  However, for the time being, the address of the package is not secret information. That can be obtained easily by capturing the accessing, etc. Therefore, expressing the package address in the URI does not increase the security risk.
 
@@ -108,3 +108,37 @@ In summary, MiniApp URI are designed to locate MiniApp resource cross-platform, 
 For point 2, the runtime make miniapp help fill the gap of the Web and the Native (like we mentioned in [miniapp white paper introduction](https://w3c.github.io/miniapp/white-paper/#what-is-miniapp)). And because the design of the MiniApp is different from traditional web applications (like we mentioned in [miniapp white paper core-features](https://w3c.github.io/miniapp/white-paper/#core-features)). Even if the miniapp packaged is downloaded by a traditional browser, it cannot be opened and run.
 
 And with the necessity of the MiniApp URI demonstrated above, therefore, browsers need to implement MiniApp URI specifications to correctly parse MiniApp URIs and implement MiniApp runtime related specifications (under development) to open and run MiniApps properly.
+
+## About MiniApp Addressing Note
+
+### 1. Why did you change the MiniApp URI scheme to the MiniApp Addressing ?
+Answer: This modification is the result of the discussion in issue No.2. The conclusion is that we shouldn't specify a new scheme( miniapp:// ), but rather reuse the HTTP scheme (https://), and define a technical solution just like the deep-link. See #2 for more information
+
+### 2. Why does this include 2 solutions? Why do we need custom-scheme?
+Answer: Because custom-scheme is more compatible with different operating systems. It can run on more systems and devices, and it is also compatible with the existing implementations mechanism(We want the MiniApp vendor to implement this note faster and more securely).
+
+Deep-link technology also contains 2 ways, custom scheme, and HTTP.
+
+For Android, they are called deep-link and app-link respectively.
+For iOS, there is universal link and custom URL scheme.
+
+MiniApp also needs to support both, custom-scheme(like Android deeplink and iOS custom url scheme) and HTTP scheme (like Android applink and iOS universal link).
+
+We prefer user agents to implement HTTP schemes, but custom-scheme is also necessary to appear in this note.
+
+### 3. Why did we specify that 'miniapp' must be included in the URI as uri-infix?
+Answer: Unifying the URI syntax of the Minapp, and identifying the URI as the MiniApp URI, which can give developers and users a constant understanding.
+
+Different user agents need to register different schemes (platform://) or HTTP URI prefix(https://platform) in the operating system, so it can’t express the Miniapp character.
+A more appropriate way is to use 'miniapp' as the Miniapp character in uri-infix.
+
+### 4. Can user agent(or browser) identify other’s MiniApp URI?
+Answer: If the user agent can handle that URI correctly(dereference the URI, download the package, provide runtime, render, and so on) with the standard method, then it can identify other's MiniApp URI and show the corresponding Miniapp. If it can’t, it should open the user agent(or app) which can handle the URI, similar to deep-link.
+
+The ideal situation is that any user agent can handle any MiniApp URI, even if the package comes from a different user agent source. That’s what we are doing at CG and WG, standardizing the MiniApp.
+
+But there is not a unified origin for distributing MiniApps nowadays. MiniApps are managed by package servers of different user agents. And user agents usually don’t allow others to download their packages. So at this stage, it is probably more likely that the user agent open another user agent to handle the others' MiniApp URI.
+
+We hope different vendors can establish a trust mechanism and make packages that can be fetched by each other, just like web app is for browsers.
+
+We can have more discussion about this topic in the MiniApp Packaging Spec.
