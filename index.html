@@ -5,14 +5,9 @@
     <meta charset="utf-8" />
     <title>MiniApp Addressing</title>
 
-    <link rel="stylesheet" href="https://w3c.github.io/miniapp/specs/local.css" />
+    <link rel="stylesheet" href="./local.css" />
 
     <style>
-    .two-cols {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-
     table {
       border-collapse:collapse;
     }
@@ -27,42 +22,53 @@
     </style>
 
     <script async class="remove" src="https://www.w3.org/Tools/respec/respec-w3c"></script>
-    <script defer src="https://w3c.github.io/miniapp/specs/script.js"></script>
+    <script defer src="./script.js"></script>
 
     <script class="remove">
         var respecConfig = {
-            specStatus: "CG-DRAFT",
+            specStatus: "ED",
             copyrightStart: "2020",
             edDraftURI: "https://w3c.github.io/miniapp-addressing/",
 
             shortName: "miniapp-addressing",
+            noRecTrack: true,
 
             editors: [{
                 name: "Dan Zhou",
                 companyURL: "https://www.baidu.com/",
-                company: "Baidu, Inc"
-              }, {
-                name: "Zhixing Lei",
-                companyURL: "https://www.baidu.com/",
-                company: "Baidu, Inc"
+                company: "Baidu, Inc",
+                w3cid: 118521
               }, {
                 name: "Qian Liu",
                 companyURL: "https://www.baidu.com/",
-                company: "Baidu, Inc"
+                company: "Baidu, Inc",
+                w3cid: 119120
               }, {
                 name: "Shuo Wang",
                 companyURL: "https://www.baidu.com/",
-                company: "Baidu, Inc"
+                company: "Baidu, Inc",
+                w3cid: 118600
               }, {
                 name: "Tengyuan Zhang",
                 companyURL: "https://www.baidu.com/",
-                company: "Baidu, Inc"
+                company: "Baidu, Inc",
+                w3cid: 118561
               }
-              ],
+            ],
 
-            wg: "MiniApps Ecosystem Community Group",
-            wgURI: "https://www.w3.org/community/miniapps/",
-            github: "w3c/miniapp",
+            formerEditors: [{
+                name: "Zhixing Lei",
+                companyURL: "https://www.baidu.com/",
+                company: "Baidu, Inc",
+                w3cid: 53404
+              },
+            ],
+
+            group: "wg/miniapps",
+            github: {
+                repoURL: "https://github.com/w3c/miniapp-addressing",
+                branch: "main",
+            },
         };
     </script>
 </head>
@@ -70,22 +76,24 @@
 <body>
     <section id='abstract'>
         <p its-locale-filter-list="en" lang="en">
-          This specification defines how MiniApps are located, which called MiniApp Addressing. That including the specifications for specific MiniApp URI syntax components based on the URI specification, and the process to dereference the MiniApp URI. Implementing this specification enables the user agent to locate the resources of MiniApp.
+          This specification defines how MiniApps are located, which is called MiniApp Addressing, including the specifications for specific MiniApp URI syntax components based on the URI specification, and the process to dereference the MiniApp URI. Implementing this specification enables the user agent to locate the resources of MiniApp.
         </p>
         <p its-locale-filter-list="zh-hans" lang="zh-hans">
           本规范定义了 MiniApp Addressing 的方式，包含基于 URI 规范之上的 MiniApp URI 的具体语法组件的规格说明，以及解引用 MiniApp URI 的过程。实现本规范，能使得 user agent 能够定位 MiniApp 的资源。
         </p>
     </section>
     <section id='sotd'>
-         <p its-locale-filter-list="en" lang="en">
-        This is still a work in progress. The proposal is being incubated in the <a href="https://www.w3.org/community/miniapps/">W3C MiniApps Ecosystem Community Group</a>.
-        </p>
-        <p its-locale-filter-list="zh-hans" lang="zh-hans">
-            本文档由 <a href="https://www.w3.org/community/miniapps/">W3C MiniApps 生态社区组</a>孵化，目前尚在编辑草稿阶段。</p>
         <p id="langSwitch">
           <button onclick="switchLang('zh-hans')" lang="zh-hans">简体中文</button>
           <button onclick="switchLang('en')" lang="en">English</button>
           <button onclick="switchLang('all')" lang="en">All</button>
+        </p>
+
+        <p its-locale-filter-list="en" lang="en">
+          The Working Group is publishing this specification as a Draft Note to encourage early review. This specification is not yet on the W3C standards track.
+        </p>
+        <p its-locale-filter-list="zh-hans" lang="zh-hans">
+          MiniApps 工作组将本规范作为备忘草案发布，以鼓励对该文档的早期审阅。该规范尚未进入 W3C 标准轨道。
         </p>
     </section>
 
@@ -95,16 +103,17 @@
         <span its-locale-filter-list="zh-hans" lang="zh-hans">介绍</span>
       </h2>
         <p its-locale-filter-list="en" lang="en">
-           Mini apps are applications that run on the user agent and are based on Web technology combined with native application technology. The <a href="https://w3c.github.io/miniapp/specs/packaging/">MiniApp Packaging</a> specification defines the form of resources in the mini app, as well as the specific path in the mini app and the mapped path relationship in the MiniApp URI scheme.
-          The source used by the user agent to get the MiniApp package, called package provider in the following.
+           Mini apps are applications that run on the user agent and are based on Web technology combined with native application technology. The [[MINIAPP-PACKAGING]] specification defines the form of resources in the mini app, as well as the specific path in the mini app and the mapped path relationship in the MiniApp URI scheme.
+          The source used by the user agent to get the MiniApp package, called <i>package provider</i> in the following.
         </p>
-        <p its-locale-filter-list="zh-hans" lang="zh-hans">小程序是运行在 user agent 上的，基于 Web 技术，结合原生应用技术实现的应用。在 <a href="https://w3c.github.io/miniapp/specs/packaging/">MiniApp Packaging 规范</a> 中定义了小程序内资源的形式，以及小程序内具体的资源路径和 MiniApp URI 中的 path 映射关系。
+        <p its-locale-filter-list="zh-hans" lang="zh-hans">小程序是运行在 user agent 上的，基于 Web 技术，结合原生应用技术实现的应用。在 [[MINIAPP-PACKAGING]] 规范中定义了小程序内资源的形式，以及小程序内具体的资源路径和 MiniApp URI 中的 path 映射关系。
           用于 user agent 获取小程序包的来源，在下文中称为 package provider。
         </p>
 
-        <p its-locale-filter-list="en" lang="en">The MiniApp Addressing is a technology that uniquely corresponds to a specific resource within a mini app. The MiniApp Addressing uses the Mobile Deep Linking technology. The prefix of the URI depends on how the device system supports it and which is selected by the user agent. The rest part of the URI follows the specification in the syntax section below, which describes the specifications and definitions of some syntax components of the URI in the mini app. Parts not covered in these specifications follow the URI specifications and are not repeated here.</p>
+        <p its-locale-filter-list="en" lang="en">MiniApp Addressing is a technology that uniquely corresponds to a specific resource within a mini app. The MiniApp Addressing uses the Mobile Deep Linking technology. The prefix of the URI depends on how the device system supports it and which is selected by the user agent. The rest part of the URI follows the specification in the syntax section below, which describes the specifications and definitions of some syntax components of the URI in the mini app. Parts not covered in these specifications follow the URI specifications and are not repeated here.</p>
         <p its-locale-filter-list="zh-hans" lang="zh-hans">
-          <br> MiniApp Addressing 是用于唯一对应一个小程序内的具体资源的技术。MiniApp Addressing 使用了 Mobile Deep Linking 技术，URI 的前缀取决于系统的支持方式及 user agent 所选取的方式。URI 的其他语法部分遵循下文中 MiniApp URI 语法章节中的规范，该章节描述了 URI 的某些语法部件在小程序中的规范与含义，本规范未涉及到的部分，沿用 URI 的规范，不再在本规范中赘述。</p>
+          MiniApp Addressing 是用于唯一对应一个小程序内的具体资源的技术。MiniApp Addressing 使用了 Mobile Deep Linking 技术，URI 的前缀取决于系统的支持方式及 user agent 所选取的方式。URI 的其他语法部分遵循下文中 MiniApp URI 语法章节中的规范，该章节描述了 URI 的某些语法部件在小程序中的规范与含义，本规范未涉及到的部分，沿用 URI 的规范，不再在本规范中赘述。
+        </p>
     </section>
 
     <section class='informative' id="examples">
@@ -134,8 +143,8 @@
         <p its-locale-filter-list="en" lang="en">Embed an <code>a</code> element with the <code>href</code> attribute as the mini app URI on the web page. When a user clicks the link, if the environment on which the web page is running can't handle the URL, the os will distributes it to a proper user agent based on the URI prefix. And the user agent receives the URI and dereferences it. Based on the host, id, version in the URI, a request is made to a specific package server that can provide mini app package upload and download services, to download and open the corresponding mini app.</p>
         <p its-locale-filter-list="zh-hans" lang="zh-hans">在 Web 页面中嵌入一个 href 属性为小程序 URI 的 <code>a</code> 元素。当用户点击该链接时，如果 Web 页面所运行的环境不能正确处理该 URL，则会由操作系统根据 URI 的前缀将其分发能处理的 user agent。User agent 会接收到该 URI，并对该 URI 解引用，根据 URI 中的 id、version 请求特定的能提供小程序包上传和下载服务的 package server，下载并打开对应的小程序。</p>
 
-        <p its-locale-filter-list="en" lang="en">As shown in the following flowchart, the package is a collection of mini app resource packages, and the content and structure of the packages are defined in the <a href="https://w3c.github.io/miniapp/specs/packaging/">packaging specification</a>.</p>
-        <p its-locale-filter-list="zh-hans" lang="zh-hans">如下流程图，其中 package 为小程序资源包集合，包的内容和结构由<a href="https://w3c.github.io/miniapp/specs/packaging/">包规范</a>定义。</p>
+        <p its-locale-filter-list="en" lang="en">As shown in the following flowchart, the package is a collection of mini app resource packages, and the content and structure of the packages are defined in the <a href="https://www.w3.org/TR/miniapp-packaging/">packaging specification</a>.</p>
+        <p its-locale-filter-list="zh-hans" lang="zh-hans">如下流程图，其中 package 为小程序资源包集合，包的内容和结构由<a href="https://www.w3.org/TR/miniapp-packaging/">包规范</a>定义。</p>
 
         <figure id="use-case-2">
           <span style="text-align:center;"><img src="images/use-case-2.png" alt="Open a MiniApp from web" width="600"></span>
@@ -299,10 +308,10 @@
           <section>
             <h2>Path</h2>
             <p its-locale-filter-list="en" lang="en">
-              Path (optional) represents the path of the mini app resource to be opened. The <a href="https://w3c.github.io/miniapp/specs/packaging/">packaging specification</a> defines the resource form, how to locate specific resource path in the package through path, and handling of the user agent when the path value is null or the path pointed by path does not exist.
+              Path (optional) represents the path of the mini app resource to be opened. The <a href="https://www.w3.org/TR/miniapp-packaging/">packaging specification</a> defines the resource form, how to locate specific resource path in the package through path, and handling of the user agent when the path value is null or the path pointed by path does not exist.
             </p>
             <p its-locale-filter-list="zh-hans" lang="zh-hans">
-              path 表示要打开的小程序资源的路径，可选。在<a href="https://w3c.github.io/miniapp/specs/packaging/">包规范</a>中定义了资源的形式，如何通过 path 定位到包内具体的资源路径，以及 path 值为空，或者 path 指向的路径不存在时 user agent 的处理。
+              path 表示要打开的小程序资源的路径，可选。在<a href="https://www.w3.org/TR/miniapp-packaging/">包规范</a>中定义了资源的形式，如何通过 path 定位到包内具体的资源路径，以及 path 值为空，或者 path 指向的路径不存在时 user agent 的处理。
             </p>
 
             <p its-locale-filter-list="en" lang="en">The semantic rules of path are consistent with the path in [[RFC3986]].</p>
@@ -508,9 +517,9 @@
               </li>
               <li>
                 <p its-locale-filter-list="en" lang="en">
-                  For downloaded mini app package, use the package format specified in the <a href="https://w3c.github.io/miniapp/specs/packaging/">MiniApp Packaging</a> specification to decompress.
+                  For downloaded mini app package, use the package format specified in the <a href="https://www.w3.org/TR/miniapp-packaging/">MiniApp Packaging</a> specification to decompress.
                 </p>
-              <p its-locale-filter-list="zh-hans" lang="zh-hans">对于下载好的小程序包，使用<a href="https://w3c.github.io/miniapp/specs/packaging/">小程序打包规范</a>中规定的包格式进行解压缩。</p>
+              <p its-locale-filter-list="zh-hans" lang="zh-hans">对于下载好的小程序包，使用<a href="https://www.w3.org/TR/miniapp-packaging/">小程序打包规范</a>中规定的包格式进行解压缩。</p>
               </li>
               </ol>
               </section>
@@ -574,9 +583,8 @@
         <span its-locale-filter-list="en" lang="en">Acknowledgments</span>
         <span its-locale-filter-list="zh-hans" lang="zh-hans">致谢</span>
       </h2>
-      <p its-locale-filter-list="en" lang="en">The editors thank to Baidu Smart Mini Program team for reviewing this document over and over again, thank to the W3C MiniApps community group for providing a lot of valuable advice.</p>
+      <p its-locale-filter-list="en" lang="en">The editors thank to Baidu Smart Mini Program team for reviewing this document over and over again, thank to the W3C MiniApps Community Group for providing a lot of valuable advice.</p>
       <p its-locale-filter-list="zh-hans" lang="zh-hans">编辑者感谢百度智能小程序团队对本文档的反复评审，感谢 W3C 小程序社区组成员提供了宝贵的意见。</p>
-      </p>
     </section>
 
 <!-- todo 如何添加引用链接？-->

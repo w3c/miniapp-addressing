@@ -91,7 +91,7 @@ The following titles are also important but out of the scope of the MiniApp URI 
 
 ### Scenario 1 A link to a miniapp in a web page
 
-<p><img width="500px" src="https://images-cdn.shimo.im/BqkA6Gqh1CQArUFl/image.png__thumbnail" alt="figure1. the use case which link to a miniapp in a web page" /></p>
+<p><img width="500px" src="https://user-images.githubusercontent.com/12129112/123224358-5524e980-d504-11eb-8c51-4179236a4055.png" alt="figure1. the use case which link to a miniapp in a web page" /></p>
 
 Example code:
 
