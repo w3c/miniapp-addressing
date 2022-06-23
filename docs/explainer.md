@@ -47,7 +47,7 @@ The miniapp URI achieve this goal by the following design:
 
 ### Key Considerations
 
-#### why is custom-scheme necessary?
+#### Why is a custom scheme necessary?
 Currently, most of MiniApp user agents use deep-link technology to open a MiniApp.
 
 Deep-link technology contains 2 ways, custom scheme, and HTTP.

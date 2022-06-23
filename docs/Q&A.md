@@ -112,7 +112,7 @@ And with the necessity of the MiniApp URI demonstrated above, therefore, browser
 ## About MiniApp Addressing Note
 
 ### 1. Why did you change the MiniApp URI scheme to the MiniApp Addressing ?
-Answer: This modification is the result of the discussion in issue No.2. The conclusion is that we shouldn't specify a new scheme( miniapp:// ), but rather reuse the HTTP scheme (https://), and define a technical solution just like the deep-link. See #2 for more information
+Answer: This modification is the result of the discussion in [issue #2](https://github.com/w3c/miniapp-addressing/issues/2). The conclusion is that we shouldn't specify a new scheme (`miniapp://`), but rather reuse the HTTP scheme (`https://`), and define a technical solution just like the deep-link. See [#2](https://github.com/w3c/miniapp-addressing/issues/2) for more information.
 
 ### 2. Why does this include 2 solutions? Why do we need custom-scheme?
 Answer: Because custom-scheme is more compatible with different operating systems. It can run on more systems and devices, and it is also compatible with the existing implementations mechanism(We want the MiniApp vendor to implement this note faster and more securely).
@@ -141,4 +141,4 @@ But there is not a unified origin for distributing MiniApps nowadays. MiniApps a
 
 We hope different vendors can establish a trust mechanism and make packages that can be fetched by each other, just like web app is for browsers.
 
-We can have more discussion about this topic in the MiniApp Packaging Spec.
+We can have more discussion about this topic in the [MiniApp Packaging](https://w3c.github.io/miniapp-packaging/) Spec.
