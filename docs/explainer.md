@@ -143,7 +143,7 @@ More use case of MiniApp can be found in the [MiniApp White Paper use case](http
 
 ## 6. Detailed design discussions
 
-The main form of discussion are meetings and offline communication. All of the discussion has been recorded in [the Q&A document](./Q&A.md)
+The main form of discussion are meetings and offline communication. All of the discussion has been recorded in [the Q&A document](./Q&A.md).
 
 ## References & acknowledgements
 
