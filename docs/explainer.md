@@ -1,4 +1,4 @@
-# MiniApp URI Scheme explainer
+# MiniApp Addressing explainer
 
 > Note: This document serves as a supplementary explanation of the [MiniApp Addressing](https://w3c.github.io/miniapp-addressing/) draft note. If there is any inconsistency with the note, you should consider the note to be authoritative.
 
