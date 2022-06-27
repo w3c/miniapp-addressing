@@ -31,7 +31,7 @@ For example:
         <tr class="tbody-even-child"><td align="left"> <code>https://hapjs.org/app/&lt;package&gt;/[path][?key=value]</code>            </td></tr>
         <tr class="tbody-odd-child"><td align="left"> <code>hap://app/&lt;package&gt;/[path][?key=value]</code>                        </td></tr>
         <tr class="tbody-even-child"><td align="left"> Baidu App     </td><td align="left"> <code>baiduboxxapp://swan/appKey/path?key=value</code>                     </td></tr>
-        <tr class="tbody-odd-child"><td rowspan="2" align="left"> Bytedance App </td><td align="left"> <code>sslocal://microapp?app_id=&lt;appId&gt;&amp;start_page=pages/home/home</code>  </td></tr>
+        <tr class="tbody-odd-child"><td rowspan="2" align="left"> ByteDance App </td><td align="left"> <code>sslocal://microapp?app_id=&lt;appId&gt;&amp;start_page=pages/home/home</code>  </td></tr>
         <tr class="tbody-even-child"><td align="left"> <code>snssdk143://microapp?app_id=&lt;appId&gt;&amp;start_page=&lt;path&gt;</code>         </td></tr>
     </tbody>
 </table>
