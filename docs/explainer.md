@@ -78,7 +78,7 @@ When a user visits a web page, the page content is always up to date. This is th
 
 ## 3. Non-goals
 
-The following titles are also important but out of the scope of the MiniApp URI Scheme draft report:
+The following titles are also important but out of the scope of MiniApp Addressing:
 
 1. the identifier of the resource within a miniapp package, which may include path, query, fragment (this may be defined in the [packaging specification](https://w3c.github.io/miniapp/specs/packaging/));
 2. the storage and management of a miniapp package;
