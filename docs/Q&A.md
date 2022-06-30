@@ -40,9 +40,9 @@ The MiniApp URI 'miniapp://foo' which has only appId  is similar to the known UR
 
 ## About syntax-version
 
-### 1. What is the relationship between version in URI and [versionName](https://w3c.github.io/miniapp/specs/manifest/#versionname) / [versionCode](https://w3c.github.io/miniapp/specs/manifest/#versioncode) in manifest? (By @hax)
+### 1. What is the relationship between version in URI and [version.name](https://w3c.github.io/miniapp/specs/manifest/#version-name) / [version.code](https://w3c.github.io/miniapp/specs/manifest/#code-member) in manifest? (By @hax)
 
-**Answer:** According to the description in the Maniafest spec, `versionName` is a semantic, optional field that can be used by the user agent or developer to show it to the user; and `versionCode` is a number that is incremented each time the MiniApp is released. Therefore, the version syntax component in the MiniApp URI can be mapped to the `versionCode` in the Manifest proposal.
+**Answer:** According to the description in the Maniafest spec, `version.name` is a semantic, optional field that can be used by the user agent or developer to show it to the user; and `version.code` is a number that is incremented each time the MiniApp is released. Therefore, the version syntax component in the MiniApp URI can be mapped to the `version.code` in the Manifest proposal.
 
 
 

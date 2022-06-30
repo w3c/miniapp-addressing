@@ -93,16 +93,28 @@ The following titles are also important but out of the scope of the MiniApp URI 
 
 <p><img width="500px" src="https://user-images.githubusercontent.com/12129112/123224358-5524e980-d504-11eb-8c51-4179236a4055.png" alt="figure1. the use case which link to a miniapp in a web page" /></p>
 
-Example code:
+Example code1:
 
 ```html
 <!doctype html>
 <html>
-<a href="platform://foo;version=1.0.1-trial@example.com:8080/pages/index?category=book#section-3">open a MiniApp</a>
+<a href="platform://miniapp/foo;version=1.0.1-trial@example.com:8080/pages/index?k=v#bar">open a MiniApp</a>
 </html>
 ```
 
 `platform` is a miniapp platform identifier to uniquely identify a user agent on a mobile device, which can be other string, usually registered in the operating system (say mobile deep linking technology)
+
+
+Example code2:
+
+```html
+<!doctype html>
+<html>
+<a href="https://platform.org/miniapp/foo;version=1.0.1-trial@example.com:8080/pages/index?k=v#bar">open a MiniApp</a>
+</html>
+```
+
+`https://platform.org` also can uniquely identify a user agent on a mobile device, used by deep linking technology.
 
 Browsers may handle the click action of Link A inconsistently for this Web page.
 
@@ -113,10 +125,27 @@ Browsers may handle the click action of Link A inconsistently for this Web page.
 
 Similar to parsing the URLs of each parts of the context for a web page, in MiniApp's runtime context, developers also need to know all the necessary information of the URI corresponding to the current MiniApp page. These information may include,
 
+Example code1:
 ```javascript
-console.log(location.href);     // platform://foo;version=1.0.1-trial@example.com:8080/pages/index?k=v#bar
+console.log(location.href);     // platform://miniapp/foo;version=1.0.1-trial@example.com:8080/pages/index?k=v#bar
 console.log(location.protocol); // platform:
-console.log(location.origin);   // platform://foo;version=1.0.1-trial@example.com:8080
+console.log(location.urifix); // miniapp    (always be miniapp)
+console.log(location.origin);   // platform://miniapp/foo;version=1.0.1-trial@example.com:8080
+console.log(location.id);       // foo
+console.log(location.version);  // 1.0.1-trial
+console.log(location.host);     // example.com
+console.log(location.port);     // 8080
+console.log(location.pathname); // /pages/index
+console.log(location.search);   // ?k=v
+console.log(location.hash);     // #bar
+```
+
+Example code2:
+```javascript
+console.log(location.href);     // https://platform.org/miniapp/foo;version=1.0.1-trial@example.com:8080/pages/index?k=v#bar
+console.log(location.protocol); // https:
+console.log(location.urifix); // miniapp    (always be miniapp)
+console.log(location.origin);   // https://platform.org/miniapp/foo;version=1.0.1-trial@example.com:8080
 console.log(location.id);       // foo
 console.log(location.version);  // 1.0.1-trial
 console.log(location.host);     // example.com
