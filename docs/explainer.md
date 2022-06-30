@@ -1,4 +1,4 @@
-# MiniApp URI Scheme explainer
+# MiniApp Addressing explainer
 
 > Note: This document serves as a supplementary explanation of the [MiniApp Addressing](https://w3c.github.io/miniapp-addressing/) draft note. If there is any inconsistency with the note, you should consider the note to be authoritative.
 
@@ -31,7 +31,7 @@ For example:
         <tr class="tbody-even-child"><td align="left"> <code>https://hapjs.org/app/&lt;package&gt;/[path][?key=value]</code>            </td></tr>
         <tr class="tbody-odd-child"><td align="left"> <code>hap://app/&lt;package&gt;/[path][?key=value]</code>                        </td></tr>
         <tr class="tbody-even-child"><td align="left"> Baidu App     </td><td align="left"> <code>baiduboxxapp://swan/appKey/path?key=value</code>                     </td></tr>
-        <tr class="tbody-odd-child"><td rowspan="2" align="left"> Bytedance App </td><td align="left"> <code>sslocal://microapp?app_id=&lt;appId&gt;&amp;start_page=pages/home/home</code>  </td></tr>
+        <tr class="tbody-odd-child"><td rowspan="2" align="left"> ByteDance App </td><td align="left"> <code>sslocal://microapp?app_id=&lt;appId&gt;&amp;start_page=pages/home/home</code>  </td></tr>
         <tr class="tbody-even-child"><td align="left"> <code>snssdk143://microapp?app_id=&lt;appId&gt;&amp;start_page=&lt;path&gt;</code>         </td></tr>
     </tbody>
 </table>
@@ -78,7 +78,7 @@ When a user visits a web page, the page content is always up to date. This is th
 
 ## 3. Non-goals
 
-The following titles are also important but out of the scope of the MiniApp URI Scheme draft report:
+The following titles are also important but out of the scope of MiniApp Addressing:
 
 1. the identifier of the resource within a miniapp package, which may include path, query, fragment (this may be defined in the [packaging specification](https://w3c.github.io/miniapp/specs/packaging/));
 2. the storage and management of a miniapp package;
@@ -172,7 +172,7 @@ More use case of MiniApp can be found in the [MiniApp White Paper use case](http
 
 ## 6. Detailed design discussions
 
-The main form of discussion are meetings and offline communication. All of the discussion has been recorded in [the Q&A document](./Q&A.md)
+The main form of discussion are meetings and offline communication. All of the discussion has been recorded in [the Q&A document](./Q&A.md).
 
 ## References & acknowledgements
 

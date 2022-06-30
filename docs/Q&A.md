@@ -141,4 +141,4 @@ But there is not a unified origin for distributing MiniApps nowadays. MiniApps a
 
 We hope different vendors can establish a trust mechanism and make packages that can be fetched by each other, just like web app is for browsers.
 
-We can have more discussion about this topic in the [MiniApp Packaging](https://w3c.github.io/miniapp-packaging/) Spec.
+We can have more discussion about this topic in the [MiniApp Packaging](https://w3c.github.io/miniapp-packaging/) spec.
