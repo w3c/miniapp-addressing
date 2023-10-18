@@ -2,42 +2,6 @@
 
 > Note: This document documents Q&A during all discussions about [MiniApp Addressing](https://w3c.github.io/miniapp-addressing/) note.
 
-## About syntax-host
-
-### 1. Why does the URI need the `host` field, do we need to download the package from another website?
-
-**Answer:** At present, there is such a demand for MiniApp. For example, the Open Source Alliance of Baidu Smart Program has a scenario that an alliance member user agent downloads MiniApp packages from package server provided by another user agent.
-
-
-
-### 2. In the syntax ["@" host [":" port]], is there any restriction to `host`?
-
-**Answer:** The host field is optional, and the value is parsed by the user agent. The host can be a null value, or it can represent some special package fetching logic, such as local debugging.
-
-
-## About syntax-appId
-
-### 1. The syntax `foo@example.com` represents the username for traditional usage in URL. Is it appropriate to reuse this syntax for appId in MiniApp URIs?（by @hax)
-
-**Answer:** In some URI protocol, the content before `@`  does indeed represent username. And those protocals are usually used to locate a specific resource related to a person's identify, such as email or ftp.
-
-But in MiniApp URI, there is no concept of 'user', so we needn't a real username.  What's the more , appid as the identity of the MiniApp can correspond to the meaning of username relative to resources.
-
-Therefore, in our opinion, it is appropriate for appId to take the  username component.
-
-
-### 2. Traditionally,  in an URI like "scheme://foo", `foo` represents the host like HTTP(s) URL, or the path like file URL. But with MiniApp URI, `foo` is not host or path. That means the original correspondence is changed. Is this appropriate? (by @hax)
-
-**Answer:** Unlike regular resources that must be obtained through the network, where to obtain the resources (network or local) is up to the user agent.
-
-For this feature, we have designed the MiniApp URI syntax that the host of the authority can be omitted, but appId, as the unique identifier of the MiniApp cannot be omitted.
-
-The MiniApp URI 'miniapp://foo' which has only appId  is similar to the known URN, such as tel: + 1-816-555-0000, isbn: 0451450523.
-
-
-**Opening question:** Judging from the syntax description of [RFC 3986](https://tools.ietf.org/html/rfc3986) specification and known URLs, we did not find the case where authority is required but host is omitted. We want your help to review whether this design complies with RFC 3986 specification.
-
-
 ## About syntax-version
 
 ### 1. What is the relationship between version in URI and [version.name](https://www.w3.org/TR/miniapp-manifest/#version-name) / [version.code](https://www.w3.org/TR/miniapp-manifest/#code-member) in manifest? (By @hax)
@@ -87,7 +51,7 @@ And if the developer hopes that the MiniApp can still be called even if the Mini
 
 **Answer:** I understand your question contains two points,
 
-1. Why not directly use the HTTPS protocol as the MiniApp URI?
+1. Why not directly use that HTTPS URL as the MiniApp URI?
 
 2. The current MiniApp URI mechanism requires a set of runtimes to parse it. Why is it necessary? What is the difference between that **runtime** and a conventional browser?
 
@@ -100,8 +64,7 @@ For example, after accessing the miniapp once, the miniapp package would be stor
 
 In these cases, the user agent open miniapp locally according to the appId in MiniApp URI without having to request a package server.
 
-In other cases, the user agent can specify its own mapping relationship with "host" component. For example, the "bar" in "miniapp: // foo @ bar" can correspond a domain or a local directory, anyway.
-
+In other cases, the user agent needs to download the package remotely. If the uri is a custom-url, the user agent will download the package from the default package server. If the uri is a https url, the user agent can download the package from the url directly.
 
 In summary, MiniApp URI are designed to locate MiniApp resource cross-platform, regardless of how they are obtained. That cannot be expressed intuitively through HTTPS URLs only. This is why we marked [Chapter 6](https://w3c.github.io/miniapp/specs/uri/#https) non-normative, and just describes it as a user scenario.
 
@@ -119,8 +82,8 @@ Answer: Because custom-scheme is more compatible with different operating system
 
 Deep-link technology also contains 2 ways, custom scheme, and HTTP.
 
-For Android, they are called deep-link and app-link respectively.
-For iOS, there is universal link and custom URL scheme.
+On Android, they are called deep-link and app-link respectively.
+On iOS, they are referred to as custom URL scheme and universal link respectively.
 
 MiniApp also needs to support both, custom-scheme(like Android deeplink and iOS custom url scheme) and HTTP scheme (like Android applink and iOS universal link).
 
