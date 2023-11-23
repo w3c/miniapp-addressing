@@ -226,8 +226,8 @@
             <li>platform://miniapp/foo/pages/index</li>
             <li>platform://miniapp/foo/widgets/index</li>
             <li>platform://miniapp/foo?category=img</li>
-            <li>platform://miniapp/foo;version=1.0.1@example.com/pages/index?category=book#section-3</li>
-            <li>platform://miniapp/foo;version=1.0.1-trial@example.com:8080/pages/index?category=book#section-3</li>
+            <li>platform://miniapp/foo;version=1.0.1/pages/index?category=book#section-3</li>
+            <li>platform://miniapp/foo;version=1.0.1-trial/pages/index?category=book#section-3</li>
           </ol>
 
           <ol>
@@ -244,7 +244,7 @@
           <p its-locale-filter-list="zh-hans" lang="zh-hans">MiniApp URI 的字符串必须要符合在 [[RFC3986]] 中声明的 URI 的字符集规则。</p>
 
           <section>
-            <h2>custom-scheme</h2>
+            <h2>Custom-scheme</h2>
             <p its-locale-filter-list="en" lang="en">custom-scheme is a miniapp platform identifier to uniquely identify a user agent on a mobile device, usually registered in the operating system (say mobile deep linking technology)</p>
             <p its-locale-filter-list="zh-hans" lang="zh-hans">custom-scheme 是 miniapp 平台的标识，通常会在操作系统中注册（参考 deep linking 技术）。</p>
 
@@ -256,7 +256,7 @@
           </section>
 
           <section>
-            <h2>id</h2>
+            <h2>Id</h2>
             <p its-locale-filter-list="en" lang="en">id is the logical identifier of the mini app under a specific host, which along with version, points to the unique mini app package of a host. There may be multiple versions of a mini app corresponding to an id under a specific host.</p>
             <p its-locale-filter-list="zh-hans" lang="zh-hans">id 是特定的 host 下的小程序逻辑标识符，与 version 共同指向了 user agent 所使用的 package provider 下唯一的小程序包。在特定的 package provider 下，一个 id 对应的小程序可能会存在多个版本。</p>
 
@@ -287,8 +287,7 @@
 
           <section>
             <h2>
-              <span its-locale-filter-list="en" lang="en">Host</span>
-              <span its-locale-filter-list="zh-hans" lang="zh-hans">host</span>
+              Host
             </h2>
             <p its-locale-filter-list="en" lang="en">
               The semantic rules for the host and port are consistent with the host in [[RFC3986]] and the port in [[RFC3986]].
@@ -321,7 +320,7 @@
           <section>
             <h2>
               <span its-locale-filter-list="en" lang="en">Query and fragment</span>
-              <span its-locale-filter-list="zh-hans" lang="zh-hans">query 与 fragment</span>
+              <span its-locale-filter-list="zh-hans" lang="zh-hans">Query 与 fragment</span>
             </h2>
 
             <p its-locale-filter-list="en" lang="en">See [[RFC3986]] for definitions of query and fragment.</p>
