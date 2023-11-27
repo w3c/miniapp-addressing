@@ -140,7 +140,7 @@
 &lt;/html&gt;
         </pre>
 
-        <p its-locale-filter-list="en" lang="en">An <code>a</code> element with the <code>href</code> attribute is embedded as the MiniApp URI on the web page. When a user clicks the link, if the environment on which the web page is running cannot handle the URL, the <abbr title="operating system">OS</abbr> will distribute it to a proper user agent based on the URI prefix. The user agent receives the URI and dereferences it. Based on the `host`, `id`, and `version` in the URI, a request is made to a specific package server that can provide MiniApp package upload and download services to download and open the corresponding MiniApp.</p>
+        <p its-locale-filter-list="en" lang="en">An <code>a</code> element with the <code>href</code> attribute is embedded as the MiniApp URI on the web page. When a user clicks the link, if the environment on which the web page is running cannot handle the URL, the <abbr title="operating system">OS</abbr> will distribute it to a proper user agent based on the URI prefix. The user agent receives the URI and dereferences it. Based on the <code>host</code>, <code>id</code>, and <code>version</code> in the URI, a request is made to a specific package server that can provide MiniApp package upload and download services to download and open the corresponding MiniApp.</p>
         <p its-locale-filter-list="zh-hans" lang="zh-hans">在 Web 页面中嵌入一个 href 属性为小程序 URI 的 <code>a</code> 元素。当用户点击该链接时，如果 Web 页面所运行的环境不能正确处理该 URL，则会由操作系统根据 URI 的前缀将其分发能处理的 user agent。User agent 会接收到该 URI，并对该 URI 解引用，根据 URI 中的 id、version 请求特定的能提供小程序包上传和下载服务的 package server，下载并打开对应的小程序。</p>
 
         <p its-locale-filter-list="en" lang="en">As shown in the following flowchart, the package is a collection of MiniApp resource packages, and the content and structure of the packages are defined in the <a href="https://www.w3.org/TR/miniapp-packaging/">packaging specification</a>.</p>
@@ -162,14 +162,14 @@
             <span its-locale-filter-list="zh-hans" lang="zh-hans">用例2：在开发环境中访问小程序包</span>
           </h2>
 
-          <p its-locale-filter-list="en" lang="en">The User agent can provide debugging tools for developers to place the MiniApp package in the user agent development environment. Developers can obtain the unique id and version number of the MiniApp in the development environment, such as "foo; version = 1.0.1". Developers can concatenate it into a MiniApp URI that opens the MiniApp:</p>
+          <p its-locale-filter-list="en" lang="en">The User agent can provide debugging tools for developers to place the MiniApp package in the user agent development environment. Developers can obtain the unique <code>id</code> and <code>version</code> number of the MiniApp in the development environment, such as <code>"foo; version = 1.0.1"</code>. Developers can concatenate it into a MiniApp URI that opens the MiniApp:</p>
           <p its-locale-filter-list="zh-hans" lang="zh-hans">User agent 可提供调试工具，用于开发者将小程序包放置于 user agent 开发环境中。开发者有能力获取该开发中的小程序的唯一 id 和版本号，比如 “foo;version=1.0.1”。开发者可将其拼接为能打开该小程序的 MiniApp URI：</p>
 
           <pre>
             platform://miniapp/foo;version=1.0.1/pages/index?k=v#bar
           </pre>
 
-          <p its-locale-filter-list="en" lang="en">When the user agent dereferences the URI, it obtains the MiniApp package with the specific identification "foo; version = 1.0.1" in a certain way, and then opens and runs the MiniApp.</p>
+          <p its-locale-filter-list="en" lang="en">When the user agent dereferences the URI, it obtains the MiniApp package with the specific identification <code>"foo; version = 1.0.1"</code> in a certain way, and then opens and runs the MiniApp.</p>
           <p its-locale-filter-list="zh-hans" lang="zh-hans">当 user agent 解引用该 URI 时，会使用某种方式获取到此特定标识为 “foo;version=1.0.1” 的小程序包，并打开和运行。</p>
 
           <figure id="use-case-3">
@@ -204,7 +204,7 @@
           <p its-locale-filter-list="zh-hans" lang="zh-hans">
             MiniApp URI 语法使用 [[ABNF]] 定义，引入 [[RFC3986]] 的 <code>host</code>、<code>path-abempty</code>、<code>query</code>、<code>fragment</code> 和 <code>unreserved</code>。
           </p>
-          <pre>
+          <pre class="abnf">
             miniappuri    = uri-prefix uri-infix identify path-abempty ["?" query ] ["#" fragment ]
 
             uri-prefix    = (custom-scheme "://") / ("https://" host)
@@ -213,7 +213,6 @@
             identify      = id [";version=" version]
             id            = 1*unreserved
             version       = *unreserved
-
           </pre>
 
           <p its-locale-filter-list="en" lang="en">The following are the MiniApp URI examples that conform to this syntax rule:</p>
@@ -245,44 +244,44 @@
 
           <section>
             <h2>Custom-scheme</h2>
-            <p its-locale-filter-list="en" lang="en">custom-scheme is a MiniApp platform identifier to uniquely identify a user agent on a mobile device, usually registered in the operating system (say mobile deep linking technology)</p>
-            <p its-locale-filter-list="zh-hans" lang="zh-hans">custom-scheme 是 MiniApp 平台的标识，通常会在操作系统中注册（参考 deep linking 技术）。</p>
+            <p its-locale-filter-list="en" lang="en"><code>custom-scheme</code> is a MiniApp platform identifier to uniquely identify a user agent on a mobile device, usually registered in the operating system (say mobile deep linking technology)</p>
+            <p its-locale-filter-list="zh-hans" lang="zh-hans"><code>custom-scheme</code> 是 MiniApp 平台的标识，通常会在操作系统中注册（参考 deep linking 技术）。</p>
 
-            <p its-locale-filter-list="en" lang="en">uri-prefix is required, either custom-scheme or https.</p>
-            <p its-locale-filter-list="zh-hans" lang="zh-hans">uri-prefix 为必填项，custom-scheme 和 https 的方式二选一。</p>
+            <p its-locale-filter-list="en" lang="en"><code>uri-prefix</code> is required, either <code>custom-scheme</code> or <code>https</code>.</p>
+            <p its-locale-filter-list="zh-hans" lang="zh-hans"><code>uri-prefix</code> 为必填项，<code>custom-scheme</code> 和 <code>https</code> 的方式二选一。</p>
 
-            <p its-locale-filter-list="en" lang="en">the semantic and syntactic rules for custom-scheme are the same as the scheme in [[RFC3986]], but the custom scheme does not need to be registered in <abbr title="Internet Assigned Numbers Authority">IANA</abbr>. The user agent should ensure that it is unique in the device.</p>
-            <p its-locale-filter-list="zh-hans" lang="zh-hans">custom-scheme 的语义规则和语法规则与 [[RFC3986]] 中的 scheme 一致，但 custom scheme 无需在 <a href="https://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml">IANA</a> 中注册，平台保证其在设备唯一即可。</p>
+            <p its-locale-filter-list="en" lang="en">the semantic and syntactic rules for <code>custom-scheme</code> are the same as the scheme in [[RFC3986]], but the custom scheme does not need to be registered in <abbr title="Internet Assigned Numbers Authority">IANA</abbr>. The user agent should ensure that it is unique in the device.</p>
+            <p its-locale-filter-list="zh-hans" lang="zh-hans"><code>custom-scheme</code> 的语义规则和语法规则与 [[RFC3986]] 中的 scheme 一致，但 custom scheme 无需在 <a href="https://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml">IANA</a> 中注册，平台保证其在设备唯一即可。</p>
           </section>
 
           <section>
             <h2>Id</h2>
-            <p its-locale-filter-list="en" lang="en">id is the logical identifier of the MiniApp under a specific host, which along with version, points to the unique MiniApp package of a host. There may be multiple versions of a MiniApp corresponding to an id under a specific host.</p>
-            <p its-locale-filter-list="zh-hans" lang="zh-hans">id 是特定的 host 下的小程序逻辑标识符，与 version 共同指向了 user agent 所使用的 package provider 下唯一的小程序包。在特定的 package provider 下，一个 id 对应的小程序可能会存在多个版本。</p>
+            <p its-locale-filter-list="en" lang="en"><code>id</code> is the logical identifier of the MiniApp under a specific <code>host</code>, which along with <code>version</code>, points to the unique MiniApp package of a host. There may be multiple versions of a MiniApp corresponding to an <code>id</code> under a specific <code>host</code>.</p>
+            <p its-locale-filter-list="zh-hans" lang="zh-hans"><code>id</code> 是特定的 host 下的小程序逻辑标识符，与 <code>version</code> 共同指向了 user agent 所使用的 package provider 下唯一的小程序包。在特定的 package provider 下，一个 id 对应的小程序可能会存在多个版本。</p>
 
-            <p its-locale-filter-list="en" lang="en">id is a mandatory field.</p>
-            <p its-locale-filter-list="zh-hans" lang="zh-hans">id 为必填项。</p>
+            <p its-locale-filter-list="en" lang="en"><code>id</code> is a mandatory field.</p>
+            <p its-locale-filter-list="zh-hans" lang="zh-hans"><code>id</code> 为必填项。</p>
 
-            <p its-locale-filter-list="en" lang="en">id consists of non-reserved characters and is not case-sensitive.</p>
-            <p its-locale-filter-list="zh-hans" lang="zh-hans">id 由非保留字符组成，大小写不敏感。</p>
+            <p its-locale-filter-list="en" lang="en"><code>id</code> consists of non-reserved characters and is not case-sensitive.</p>
+            <p its-locale-filter-list="zh-hans" lang="zh-hans"><code>id</code> 由非保留字符组成，大小写不敏感。</p>
 
-            <p its-locale-filter-list="en" lang="en">The package provider that the user agent depends on must guarantee the uniqueness of the id.</p>
-            <p its-locale-filter-list="zh-hans" lang="zh-hans">user agent 所依赖的 package provider 必须保证 id 的唯一性。</p>
+            <p its-locale-filter-list="en" lang="en">The package provider that the user agent depends on must guarantee the uniqueness of the <code>id</code>.</p>
+            <p its-locale-filter-list="zh-hans" lang="zh-hans">user agent 所依赖的 package provider 必须保证 <code>id</code> 的唯一性。</p>
           </section>
 
           <section>
             <h2>Version</h2>
-            <p its-locale-filter-list="en" lang="en">Version and id together represent the unique MiniApp package of the user agent.</p>
-            <p its-locale-filter-list="zh-hans" lang="zh-hans">version 与 id 共同表示了 user agent 下唯一的小程序包。</p>
+            <p its-locale-filter-list="en" lang="en"><code>version</code> and <code>id</code> together represent the unique MiniApp package of the user agent.</p>
+            <p its-locale-filter-list="zh-hans" lang="zh-hans"><code>version</code> 与 <code>id</code> 共同表示了 user agent 下唯一的小程序包。</p>
 
-            <p its-locale-filter-list="en" lang="en">Version is optional; the user agent can define rules to provide information such as version and development method.</p>
-            <p its-locale-filter-list="zh-hans" lang="zh-hans">version 为可选项，user agent 可以对 version 制定规则，用于提供版本、开发方式等信息。</p>
+            <p its-locale-filter-list="en" lang="en"><code>version</code> is optional; the user agent can define rules to provide information such as version and development method.</p>
+            <p its-locale-filter-list="zh-hans" lang="zh-hans"><code>version</code> 为可选项，user agent 可以对 version 制定规则，用于提供版本、开发方式等信息。</p>
 
-            <p its-locale-filter-list="en" lang="en">Version consists of non-reserved characters and is not case-sensitive.</p>
-            <p its-locale-filter-list="zh-hans" lang="zh-hans">version 由非保留字符组成，大小写不敏感。</p>
+            <p its-locale-filter-list="en" lang="en"><code>version</code> consists of non-reserved characters and is not case-sensitive.</p>
+            <p its-locale-filter-list="zh-hans" lang="zh-hans"><code>version</code> 由非保留字符组成，大小写不敏感。</p>
 
-            <p its-locale-filter-list="en" lang="en">In most usage scenarios, it is recommended that the version is not defined and the user agent and package provider manage versioning.</p>
-            <p its-locale-filter-list="zh-hans" lang="zh-hans">多数使用场景下建议 version 为空，由 user agent 及 package provider 进行版本的管理。</p>
+            <p its-locale-filter-list="en" lang="en">In most usage scenarios, it is recommended that the <code>version</code> is not defined and the user agent and package provider manage versioning.</p>
+            <p its-locale-filter-list="zh-hans" lang="zh-hans">多数使用场景下建议 <code>version</code> 为空，由 user agent 及 package provider 进行版本的管理。</p>
           </section>
 
           <section>
@@ -290,17 +289,17 @@
               Host
             </h2>
             <p its-locale-filter-list="en" lang="en">
-              The semantic rules for the host and port are consistent with the host in [[RFC3986]] and the port in [[RFC3986]].
+              The semantic rules for the <code>host</code> and port are consistent with the host in [[RFC3986]] and the port in [[RFC3986]].
             </p>
             <p its-locale-filter-list="zh-hans" lang="zh-hans">
               host 的语义规则和 [[RFC3986]] 中的 host 一致。
             </p>
 
             <p its-locale-filter-list="en" lang="en">
-              host has nothing to do with how and where the MiniApp packages are downloaded.
+              <code>host</code> has nothing to do with how and where the MiniApp packages are downloaded.
             </p>
             <p its-locale-filter-list="zh-hans" lang="zh-hans">
-              host 与 MiniApp package 下载方式及下载地址无关。
+              <code>host</code> 与 MiniApp package 下载方式及下载地址无关。
             </p>
           </section>
 
@@ -342,21 +341,21 @@
 
             <ol start=1>
               <li>
-                <p its-locale-filter-list="en" lang="en">The OS recognizes the MiniApp URI and distributes it to the specified user agent based on the uri-prefix of the URI</p>
-                <p its-locale-filter-list="zh-hans" lang="zh-hans">OS 识别 MiniApp URI。并根据 URI 的 uri-prefix 分发到指定的 platform 打开。</p>
+                <p its-locale-filter-list="en" lang="en">The OS recognizes the MiniApp URI and distributes it to the specified user agent based on the <code>uri-prefix</code> of the URI</p>
+                <p its-locale-filter-list="zh-hans" lang="zh-hans">OS 识别 MiniApp URI。并根据 URI 的 <code>uri-prefix</code> 分发到指定的 platform 打开。</p>
               </li>
 
             <li>
-              <p its-locale-filter-list="en" lang="en">The user agent recognizes MiniApp URI. If the uri-infix of this URI is <code>miniapp</code>, the user agent considers it as a MiniApp URI and parses the syntax components according to the syntax rules specified in this specification.</p>
-              <p its-locale-filter-list="zh-hans" lang="zh-hans">user agent 识别 MiniApp URI。如果该 URI 的 uri-infix 为 <code>miniapp</code>，则 user agent 认为其是 MiniApp URI，并以本规范中规定的语法规则解析语法部件。 </p>
+              <p its-locale-filter-list="en" lang="en">The user agent recognizes MiniApp URI. If the <code>uri-infix</code> of this URI is <code>miniapp</code>, the user agent considers it as a MiniApp URI and parses the syntax components according to the syntax rules specified in this specification.</p>
+              <p its-locale-filter-list="zh-hans" lang="zh-hans">user agent 识别 MiniApp URI。如果该 URI 的 <code>uri-infix</code> 为 <code>miniapp</code>，则 user agent 认为其是 MiniApp URI，并以本规范中规定的语法规则解析语法部件。 </p>
             </li>
             <li>
-              <p its-locale-filter-list="en" lang="en">The user agent parses the syntax components of MiniApp URI according to the above syntax rules into id, version, path, query, and fragment. If the syntax parsing fails, the user agent terminates this dereferencing algorithm.</p>
-              <p its-locale-filter-list="zh-hans" lang="zh-hans">user agent 解析 MiniApp URI 语法部件。User agent 依据上述语法规则，将 MiniApp URI 解析为 id、version、path、 query 和 fragment 语法部件。如果语法解析失败，user agent  则终止此解引用算法。</p>
+              <p its-locale-filter-list="en" lang="en">The user agent parses the syntax components of MiniApp URI according to the above syntax rules into <code>id</code>, <code>version</code>, path, query, and fragment. If the syntax parsing fails, the user agent terminates this dereferencing algorithm.</p>
+              <p its-locale-filter-list="zh-hans" lang="zh-hans">user agent 解析 MiniApp URI 语法部件。User agent 依据上述语法规则，将 MiniApp URI 解析为 <code>id</code>、<code>version</code>、path、 query 和 fragment 语法部件。如果语法解析失败，user agent  则终止此解引用算法。</p>
             </li>
             <li>
               <p its-locale-filter-list="en" lang="en">
-                A user agent usually has two or more ways to get the MiniApp package specified by id, either from the local file path or a remote downloading package server that provides package download service.</p>
+                A user agent usually has two or more ways to get the MiniApp package specified by <code>id</code>, either from the local file path or a remote downloading package server that provides package download service.</p>
 
               <p its-locale-filter-list="en" lang="en">The user agent will give priority to the local path, and if it does not find it, it will fetch it from the remote package server.
                 The download process using HTTPS protocol as a download protocol is described in [[[#https]]] below.</p>
@@ -371,32 +370,32 @@
 
             <ol start=5>
             <li>
-              <p its-locale-filter-list="en" lang="en">The user agent uses id as a MiniApp logic identifier for package provider. A MiniApp identified by an id may have multiple versions in the package provider.</p>
+              <p its-locale-filter-list="en" lang="en">The user agent uses <code>id</code> as a MiniApp logic identifier for package provider. A MiniApp identified by an <code>id</code> may have multiple versions in the package provider.</p>
               <p its-locale-filter-list="zh-hans" lang="zh-hans">
-                user agent 将 id 作为 package provider 下的小程序逻辑标识符。在特定 package provider 下，一个指定 id 的小程序可能会存在多个版本。
+                user agent 将 <code>id</code> 作为 package provider 下的小程序逻辑标识符。在特定 package provider 下，一个指定 id 的小程序可能会存在多个版本。
               </p>
             </li>
             <li>
-              <p its-locale-filter-list="en" lang="en">The user agent uses version as the version information of the MiniApp package with the specified id. The user agent handles different existence modes of the version. For example:</p>
+              <p its-locale-filter-list="en" lang="en">The user agent uses <code>version</code> as the version information of the MiniApp package with the specified <code>id</code>. The user agent handles different existence modes of the version. For example:</p>
               <p its-locale-filter-list="zh-hans" lang="zh-hans">
-                user agent 将 version 作为指定 id 的小程序包的版本信息。User agent 需要处理 version 的不同存在方式：比如
+                user agent 将 <code>version</code> 作为指定 <code>id</code> 的小程序包的版本信息。User agent 需要处理 version 的不同存在方式：比如
               </p>
             </li>
             </ol>
 
-            <p its-locale-filter-list="en" lang="en">When version has a value, the version is used as the version information of the MiniApp package, which along with id, points to the unique MiniApp package of a package provider.</p>
-            <p its-locale-filter-list="zh-hans" lang="zh-hans">当 version 存在值时，将 version 作为小程序包的版本信息，与 id 共同指向某个 package provider 唯一的小程序包。</p>
+            <p its-locale-filter-list="en" lang="en">When <code>version</code> has a value, the version is used as the version information of the MiniApp package, which along with <code>id</code>, points to the unique MiniApp package of a package provider.</p>
+            <p its-locale-filter-list="zh-hans" lang="zh-hans">当 version 存在值时，将 version 作为小程序包的版本信息，与 <code>id</code> 共同指向某个 package provider 唯一的小程序包。</p>
 
-            <p its-locale-filter-list="en" lang="en">When version is null, the MiniApp package with a specified id is customized as a MiniApp package provider (package server or user agent), which can be the latest version or the default version of the MiniApp package with specified id, or the MiniApp package of a version that conforms to a mapping rule.</p>
-            <p its-locale-filter-list="zh-hans" lang="zh-hans">当 version 为空值时，将会以小程序包 provider （package server or user agent）自定义提供指定 id 的小程序包，可以是该指定 id 的小程序包的最新版本、或者是默认版本、或者是符合某种映射规则的版本的小程序包。</p>
+            <p its-locale-filter-list="en" lang="en">When <code>version</code> is not defined, the MiniApp package with a specified <code>id</code> is customized as a MiniApp package provider (package server or user agent), which can be the latest version or the default version of the MiniApp package with specified <code>id</code>, or the MiniApp package of a version that conforms to a mapping rule.</p>
+            <p its-locale-filter-list="zh-hans" lang="zh-hans">当 version 为空值时，将会以小程序包 provider （package server or user agent）自定义提供指定 <code>id</code> 的小程序包，可以是该指定 <code>id</code> 的小程序包的最新版本、或者是默认版本、或者是符合某种映射规则的版本的小程序包。</p>
 
-            <p its-locale-filter-list="en" lang="en">In most usage scenarios, it is recommended that the version is null, and the version is managed by the user agent and package provider.</p>
+            <p its-locale-filter-list="en" lang="en">In most usage scenarios, it is recommended that the <code>version</code> is not defined, and the version is managed by the user agent and package provider.</p>
             <p its-locale-filter-list="zh-hans" lang="zh-hans">多数使用场景下建议 version 为空，由 user agent 及 package provider 进行版本的管理。</p>
 
             <ol start=6>
             <li>
-              <p its-locale-filter-list="en" lang="en">The user agent obtains the MiniApp package based on the parsed provider information and the identification information of the MiniApp (e.g., id, version). The user agent handles different situations of the provider:</p>
-              <p its-locale-filter-list="zh-hans" lang="zh-hans">user agent 根据解析到的 provider 的信息及小程序的标识信息（比如 id、version）获取小程序的包。User agent 需要处理 provider 不同的情况：</p>
+              <p its-locale-filter-list="en" lang="en">The user agent obtains the MiniApp package based on the parsed provider information and the identification information of the MiniApp (e.g., <code>id</code>, <code>version</code>). The user agent handles different situations of the provider:</p>
+              <p its-locale-filter-list="zh-hans" lang="zh-hans">user agent 根据解析到的 provider 的信息及小程序的标识信息（比如 <code>id</code>、<code>version</code>）获取小程序的包。User agent 需要处理 provider 不同的情况：</p>
             </li>
             </ol>
 
@@ -460,9 +459,9 @@
               </li>
               <li>
                 <p its-locale-filter-list="en" lang="en">
-                  Use the HTTPS URL to get the package with the id and version as request parameters: https://example.com/getPackage?id=foo&version=1.0.1-trial
+                  Use the HTTPS URL to get the package with the <code>id</code> and <code>version</code> as request parameters: https://example.com/getPackage?id=foo&version=1.0.1-trial
                 </p>
-                <p its-locale-filter-list="zh-hans" lang="zh-hans">以 GET 请求将 id 和 version 作为请求参数，使用获取包的 URL 拼接完整 URL： https://example.com/getPackage?id=foo&version=1.0.1-trial</p>
+                <p its-locale-filter-list="zh-hans" lang="zh-hans">以 GET 请求将 <code>id</code> 和 <code>version</code> 作为请求参数，使用获取包的 URL 拼接完整 URL： https://example.com/getPackage?id=foo&version=1.0.1-trial</p>
               </li>
               <li>
                 <p its-locale-filter-list="en" lang="en">
@@ -491,9 +490,9 @@
               </li>
               <li>
                 <p its-locale-filter-list="en" lang="en">
-                  Based on the query or body carried in the requested URL, a MiniApp package with id “foo”, version “1.0.1” is returned. If it is not found, an HTTP 404 Not Found response is returned.
+                  Based on the query or body carried in the requested URL, a MiniApp package with <code>id</code> “foo”, <code>version</code> “1.0.1” is returned. If it is not found, an HTTP 404 Not Found response is returned.
                 </p>
-              <p its-locale-filter-list="zh-hans" lang="zh-hans">根据请求 URL 所携带的 query 或者 body， 返回 id 为 “foo”，version 为“1.0.1” 的小程序包。如果找不到，则返回 HTTP 404 Not Found 响应。</p>
+              <p its-locale-filter-list="zh-hans" lang="zh-hans">根据请求 URL 所携带的 query 或者 body， 返回 id 为 “foo”，<code>version</code> 为“1.0.1” 的小程序包。如果找不到，则返回 HTTP 404 Not Found 响应。</p>
 
               </li>
               <li>
