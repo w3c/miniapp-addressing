@@ -205,9 +205,9 @@
             MiniApp URI 语法使用 [[ABNF]] 定义，引入 [[RFC3986]] 的 <code>host</code>、<code>path-abempty</code>、<code>query</code>、<code>fragment</code> 和 <code>unreserved</code>。
           </p>
           <pre class="abnf">
-            miniappuri    = uri-prefix uri-infix identify path-abempty ["?" query ] ["#" fragment ]
+            miniappuri    = uri-prefix uri-infix "/" identify path-abempty ["?" query ] ["#" fragment ]
 
-            uri-prefix    = (custom-scheme "://") / ("https://" host)
+            uri-prefix    = (custom-scheme "://") / ("https://" host "/")
             custom-scheme = 1*unreserved
             uri-infix     =  "miniapp"
             identify      = id [";version=" version]
